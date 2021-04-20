@@ -213,6 +213,13 @@ macro_rules! sockopt_impl {
  *
  */
 
+cfg_if! {
+    if #[cfg(target_os = "linux")] {
+        sockopt_impl!(Both, IpRecvErr, libc::SOL_IP, libc::IP_RECVERR, bool);
+        sockopt_impl!(Both, IpRecvTtl, libc::SOL_IP, libc::IP_RECVTTL, bool);
+        sockopt_impl!(Both, IpMtuDiscover, libc::SOL_IP, libc::IP_MTU_DISCOVER, u8);   
+    }
+}
 sockopt_impl!(Both, ReuseAddr, libc::SOL_SOCKET, libc::SO_REUSEADDR, bool);
 #[cfg(not(any(target_os = "illumos", target_os = "solaris")))]
 sockopt_impl!(Both, ReusePort, libc::SOL_SOCKET, libc::SO_REUSEPORT, bool);
