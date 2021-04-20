@@ -217,7 +217,7 @@ cfg_if! {
     if #[cfg(target_os = "linux")] {
         sockopt_impl!(Both, IpRecvErr, libc::SOL_IP, libc::IP_RECVERR, bool);
         sockopt_impl!(Both, IpRecvTtl, libc::SOL_IP, libc::IP_RECVTTL, bool);
-        sockopt_impl!(Both, IpMtuDiscover, libc::SOL_IP, libc::IP_MTU_DISCOVER, u8);   
+        sockopt_impl!(Both, IpMtuDiscover, libc::SOL_IP, libc::IP_MTU_DISCOVER, bool); 
     }
 }
 sockopt_impl!(Both, ReuseAddr, libc::SOL_SOCKET, libc::SO_REUSEADDR, bool);
